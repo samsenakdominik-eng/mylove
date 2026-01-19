@@ -238,7 +238,7 @@ function loadGallery() {
     // Funkce, která zkusí načíst obrázek
     function tryLoadImage(i) {
         const img = new Image();
-        const filename = `${i}.jpg`; // Zkoušíme 1.jpg, 2.jpg...
+        const filename = `${i}.jpeg`; // Zkoušíme 1.jpg, 2.jpg...
         
         img.src = filename;
 
