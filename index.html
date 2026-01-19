@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro mou jedinou ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="garden-container"></div>
+    
+    <div id="music-container"></div>
+
+    <div id="lock-screen" class="page-layer active-page" style="background-image: url('30.jpeg');">
+        <div class="overlay-dark"></div>
+        <div class="glass-panel text-center fade-in-up">
+            <h2 class="romantic-heading mb-4">Pro Petika</h2>
+            <p class="text-muted mb-4">Zadej datum, ty víš jaký.</p>
+
+            <div class="mb-4 position-relative">
+                <i class="fas fa-key password-icon"></i>
+                <input type="password" id="passwordInput" class="form-control text-center password-field"
+                    placeholder="DDMMRRRR" maxlength="8">
+            </div>
+
+            <button onclick="checkPassword()" class="btn btn-heart-pulse w-100 py-3">
+                <i class="fas fa-heart me-2"></i> Klikni pro vstup
+            </button>
+            <p id="error-msg" class="text-danger mt-3 fw-bold shake-animation"
+                style="display:none; visibility: hidden;">
+                Zkus to znovu, lásko... ❤️
+            </p>
+        </div>
+    </div>
+
+    <div id="apology-page" class="page-layer content-below">
+        <div class="overlay-soft"></div>
+
+        <section class="hero-section text-center w-100 container px-4">
+            <div class="photo-wrapper mb-5 fade-in-up" style="animation-delay: 0.2s;">
+                <div class="photo-pulse"></div>
+                <img src="21.jpg" alt="Omluva" class="img-fluid rounded-circle main-photo">
+            </div>
+
+            <h1 class="romantic-heading display-4 text-white mb-4 fade-in-up" style="animation-delay: 0.4s;">
+                Odpusť mi, prosím...
+            </h1>
+
+            <div class="apology-card mx-auto fade-in-up" style="animation-delay: 0.6s;">
+                <p id="typewriter-text" class="lead mb-0"></p>
+            </div>
+
+            <button class="btn btn-special-rose btn-lg mt-5 fade-in-up" style="animation-delay: 0.8s;"
+                onclick="changePage('apology-page', 'gallery-page')">
+                <i class="fas fa-camera-retro me-2"></i> Naše nejhezčí chvíle
+            </button>
+        </section>
+    </div>
+
+    <div id="gallery-page" class="page-layer content-below">
+        <div class="overlay-darker"></div>
+        <div class="container text-center container-gallery">
+            <h2 class="romantic-heading display-5 mb-5 text-white fade-in-up">Důvody, proč Tě miluji</h2>
+
+            <div id="loveCarousel" class="carousel slide carousel-fade shadow-lg mx-auto fade-in-up"
+                style="animation-delay: 0.3s;" data-bs-ride="carousel" data-bs-interval="3500">
+
+                <div class="carousel-indicators" id="carousel-indicators"></div>
+                <div class="carousel-inner rounded-5" id="gallery-container"></div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#loveCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark bg-opacity-25 rounded-circle p-3"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#loveCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark bg-opacity-25 rounded-circle p-3"></span>
+                </button>
+            </div>
+
+            <div class="d-flex justify-content-center gap-3 mt-5 flex-wrap fade-in-up" style="animation-delay: 0.6s;">
+                <button class="btn btn-outline-light btn-lg" onclick="changePage('gallery-page', 'apology-page')">
+                    <i class="fas fa-arrow-up me-2"></i> Zpět k omluvě
+                </button>
+
+                <button class="btn btn-special-rose btn-lg" onclick="changePage('gallery-page', 'favorites-page')">
+                    Ty <i class="fas fa-heart ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="favorites-page" class="page-layer content-below">
+        <div class="overlay-soft"></div>
+        <div class="container text-center">
+            <h2 class="romantic-heading display-4 mb-4" style="color: var(--deep-wine);">Tvůj svět & Vše co miluji</h2>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 justify-content-center px-1 mb-5 pb-5">
+
+                <div class="col fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-futbol"></i></div>
+                        <h3>Fotbálek</h3>
+                        <p>Miluješ fotbálek a i když se ne vždy dáří, jde ti to skvěle.</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-cookie-bite"></i></div>
+                        <h3>Dezertík</h3>
+                        <p>Miluješ cokoliv čokoládového, vždy říkám, že si to nedám, ale pak bych ti to stejnak vždy
+                            nejradši spapkal.</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-drumstick-bite"></i></div>
+                        <h3>Papíníčko</h3>
+                        <p>Nesnášíš skoro vše zeleného, na vše dáváš kečup a miluješ kachničku a cokoliv, co ti ukuchtí
+                            děda.</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-book-reader"></i></div>
+                        <h3>Knížky</h3>
+                        <p>Ráda čteš, což nechápu, ale jsi u toho kurva sexy.</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-calendar-check"></i></div>
+                        <h3>05.12.2024</h3>
+                        <p>Jsme spolu už <strong id="days-count"
+                                style="color: var(--primary-rose); font-size: 1.2rem;">0</strong> dní a každou vteřinu z
+                            toho tě miluju víc.</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.6s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-paw"></i></div>
+                        <h3>Zvířátka</h3>
+                        <p>Miluješ kočičky, ale chtěla by jsi mít zlatého retrívra.</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.7s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-sun"></i></div>
+                        <h3>Moje nejkrásnější žena</h3>
+                        <p>Jseš ta nejkrásnější pihatá holka na celém světě. :)</p>
+                    </div>
+                </div>
+
+                <div class="col fade-in-up" style="animation-delay: 0.8s;">
+                    <div class="trait-card">
+                        <div class="icon-circle"><i class="fas fa-fire-alt"></i></div>
+                        <h3>Horny Giirl</h3>
+                        <p>A zároveň jseš moje nejvíc horny princeznička na světě. 😈</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="btn btn-outline-rose btn-lg bg-white fade-in-up" style="animation-delay: 0.9s;"
+                onclick="changePage('favorites-page', 'gallery-page')">
+                <i class="fas fa-images me-2"></i> Zpět k fotkám
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
