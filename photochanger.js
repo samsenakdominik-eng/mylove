@@ -15,7 +15,7 @@ fs.readdir(directory, (err, files) => {
     const ext = parsed.ext.toLowerCase();
     let name = parsed.name;
 
-    if (ext === '.jpg' || ext === '.jpeg') {
+    if (ext === '.jpg' || ext === '.jpeg' || ext === '.png') {
       // Vyčistit název od případných .JPG nebo .jpg
       if (name.toUpperCase().endsWith('.JPG')) {
         name = name.slice(0, -4);
@@ -27,18 +27,42 @@ fs.readdir(directory, (err, files) => {
       const inputPath = path.join(directory, file);
       const outputPath = path.join(directory, output);
 
-      if (inputPath !== outputPath) {
+      const inputLower = inputPath.toLowerCase();
+      const outputLower = outputPath.toLowerCase();
+
+      if (inputLower !== outputLower) {
+        // Normální konverze
         sharp(inputPath)
           .jpeg()
           .toFile(outputPath)
           .then(() => {
             console.log(`Konvertováno ${file} na ${output}`);
-            // Volitelně smazat původní soubor
             fs.unlink(inputPath, (err) => { if (err) console.error('Chyba při mazání:', err); });
           })
           .catch(err => {
             console.error(`Chyba při konverzi ${file}:`, err);
           });
+      } else if (inputPath !== outputPath) {
+        // Case differs, ale stejný soubor - dočasně přejmenovat
+        const tempPath = inputPath + '.temp';
+        fs.rename(inputPath, tempPath, (err) => {
+          if (err) {
+            console.error(`Chyba při přejmenování na temp:`, err);
+            return;
+          }
+          sharp(tempPath)
+            .jpeg()
+            .toFile(outputPath)
+            .then(() => {
+              console.log(`Konvertováno ${file} na ${output}`);
+              fs.unlink(tempPath, (err) => { if (err) console.error('Chyba při mazání temp:', err); });
+            })
+            .catch(err => {
+              console.error(`Chyba při konverzi ${file}:`, err);
+              // Vrátit zpět
+              fs.rename(tempPath, inputPath, () => {});
+            });
+        });
       }
     }
   });
